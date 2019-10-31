@@ -1,2 +1,2 @@
-# thukera-store.github.io
+# music-store.github.io
  Website for academic purposes
