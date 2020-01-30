@@ -55,3 +55,12 @@ var galleryThumbs = new Swiper('.gallery-thumbs', {
       swiper: galleryThumbs
     }
   });
+
+
+  function openInstitucional(){
+    window.location.href = "institucional.html";
+  }
+
+  function openListaProdutos(){
+    window.location.href = "listaProdutos.html";
+  }
