@@ -408,6 +408,59 @@
     <script src="swiper-master/dist/js/swiper.js"></script>
     <script src="swiper-master/dist/js/swiper.min.js"></script>
     <script src="script.js"></script>
+    <script th:inline="javascript">
+
+		function limpa_formulário_cep() {
+			//Limpa valores do formulário de cep.
+			document.getElementById('rua').value = ("");
+			document.getElementById('bairro').value = ("");
+			document.getElementById('cidade').value = ("");
+			document.getElementById('uf').value = ("");
+		}
+
+		function viacep() {
+
+
+			var cep = document.getElementById("cep").value;
+
+			//Verifica se campo cep possui valor informado.
+			if (cep === null) {
+				alert("Insira o Cep");
+
+			} else {
+
+
+				//Cria um elemento javascript.
+				var script = document.createElement('script');
+
+				//Sincroniza com o callback.
+				script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+				//Insere script no documento e carrega o conteúdo.
+				document.body.appendChild(script);
+			}
+
+
+		};
+
+		function meu_callback(conteudo) {
+
+			if (!("erro" in conteudo)) {
+				//Atualiza os campos com os valores.
+				document.getElementById('rua').value = (conteudo.logradouro);
+				document.getElementById('bairro').value = (conteudo.bairro);
+				document.getElementById('cidade').value = (conteudo.localidade);
+				document.getElementById('uf').value = (conteudo.uf);
+			} //end if.
+			else {
+				//CEP não Encontrado.
+				limpa_formulário_cep();
+			//	document.getElementById("cepLabel").classList.add("invalid-feedback");
+			//	Document.getElementById("cepLabel").classList.remove("input-group");
+			}
+		};
+
+	</script>
 </body>
 
 
